@@ -10,7 +10,6 @@ const (
 	upper   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	nums    = "0123456789"
 	special = "!@#$%&-_+=.,/?~"
-	debug   = "abcde"
 )
 
 func findDuplicateLetters(slice []byte) map[byte][]int {
@@ -53,20 +52,21 @@ func main() {
 	//verifica letras duplicadas e substitui as letras duplicadas por novas letras
 	for {
 		mapDup := findDuplicateLetters(password)
-		fmt.Println(mapDup)
-		fmt.Println(password)
+		//fmt.Println(mapDup) --DEBUG
+		//fmt.Println(password) --DEBUG
 
-		for key, value := range mapDup {
-			fmt.Println(key, value)
+		for _, value := range mapDup {
+			//fmt.Println(key, value) --DEBUG
 			for i := 0; i < len(value); i++ {
 				var j = value[i]
-				fmt.Println(j)
+				//fmt.Println(j) --DEBUG
 				randNum := rand.Intn(r)
-				fmt.Println(randNum)
+				//fmt.Println(randNum) --DEBUG
 				password[j] = byte(randNum)
-				fmt.Println(password[j])
+				//fmt.Println(password[j]) --DEBUG
 			}
 		}
+		//definindo variavel para verificar se existem ainda chars duplicados
 		var dup bool
 		if len(mapDup) == 0 {
 			dup = false
@@ -74,13 +74,14 @@ func main() {
 			dup = true
 		}
 
+		//condiciona de saida do do-while/for
 		if dup == false {
 			break
 		}
 	}
 
 	//imprime a senha
-	fmt.Println(password)
+	//fmt.Println(password) --DEBUG
 	for i := 0; i < len(password); i++ {
 		var j = password[i]
 		fmt.Printf("%c", charSource[j])
